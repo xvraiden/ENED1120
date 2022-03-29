@@ -1,30 +1,34 @@
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, SpeedRPM
 from ev3dev2.wheel import Wheel
 
+#drive motor ports
 leftDrive = OUTPUT_A
 rightDrive = OUTPUT_D
 
+#speeds for moving
 driveSpeed = SpeedRPM(60)
 senseSpeed = SpeedRPM(30)
 
+#wheel offset on center mm
 wheelOffset = 136.0 
 
+# sensing distance in cm
 sensingDistance = 7
 
-#shelf locations
-shelf1X = 5
-shelf1Y = 5
-
-shelf2X = 5
-shelf2Y = 5
-
 #package locations
-package1X = 10
-package1Y = 10
+shelf1 = "A1"
+package1 = 1
+dump1 = "C"
 
-package2X = 10
-package2Y = 10
+shelf2 = "A2"
+package2 = 2
+dump2 = "B"
 
+#barcode (1 = black, 6 = white)
+barcode1 = [6,1,1,1]
+barcode2 = [1,6,1,1]
+
+#tire with diameter and width in mm
 class MyTire(Wheel):
     """
     part number 56145
