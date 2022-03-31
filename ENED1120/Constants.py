@@ -9,24 +9,29 @@ rightDrive = OUTPUT_D
 driveSpeed = SpeedRPM(60)
 senseSpeed = SpeedRPM(30)
 
+#claw speed
+clawSpeed = SpeedRPM(30)
+
 #wheel offset on center mm
 wheelOffset = 136.0 
 
 # sensing distance in cm
 sensingDistance = 7
 
+#box quantity
+quantity = 2
+
 #package locations
 shelf1 = "A1"
 package1 = 1
+barcode1 = 1
 dump1 = "C"
 
 shelf2 = "A2"
 package2 = 2
+barcode2 = 1
 dump2 = "B"
 
-#barcode (1 = black, 6 = white)
-barcode1 = [6,1,1,1]
-barcode2 = [1,6,1,1]
 
 #tire with diameter and width in mm
 class MyTire(Wheel):
