@@ -22,12 +22,12 @@ m_Color = ColorSensor
 m_Drivetrain.odometry_start(90, 6 * 25.4, -6 * 25.4)
 
 #create loop that runs number of times based on boxes to be fulfilled
-for q in range(1, Constants.quantity, 1):
+for q in range(1, len(Constants.Packages), 1):
     #get location of shelf at index q in file Location.py
     Location.DetermineShelfLocation(q)
 
     #drive to start of desired shelf
-    m_Drivetrain.on_to_coordinates(Constants.driveSpeed, Location.LocationXShelf, Location.LocationYShelf - 200)
+    m_Drivetrain.on_to_coordinates(Constants.driveSpeed, Location.LocationXShelf, Location.LocationYShelf)
 
     #sense the barcode until we are at location
     while (pos == False):

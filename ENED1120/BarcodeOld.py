@@ -50,16 +50,29 @@ def Interperate(unitNumber):
         readAgain = true
 
     # checks if the barcode sensored is the same as desired one:
-    if (barcode == Constants.Packages(unitNumber - 1, 2)):
-        Location.DetermineDumpLocation(Constants.dump1)
-        LocationX = Location.LocationXDump
-        LocationY = Location.LocationYDump
-        return True
-    else:
-        # display the location if the box does not match
-        OSD.Draw("Box Type {0}".format(barcode))
-        return False
-
+    match(unitNumber):
+        # in first run
+        case 1:
+            if(barcode == Constants.barcode1):
+                Location.DetermineDumpLocation(Constants.dump1)
+                LocationX = Location.LocationXDump
+                LocationY = Location.LocationYDump
+                return True
+            else:
+                # display the location if the box does not match
+                OSD.Draw("Box Type {0}".format(barcode))
+                return False
+        # in second run
+        case 2:
+            if(barcode == Constants.barcode2):
+                Location.DetermineDumpLocation(Constants.dump2)
+                LocationX = Location.LocationXDump
+                LocationY = Location.LocationYDump
+                return True
+            else:
+                # display the location if the box does not match
+                OSD.Draw("Box Type {0}".format(barcode))
+                return False
 
 
 

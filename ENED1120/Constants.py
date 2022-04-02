@@ -21,7 +21,7 @@ sensingDistance = 7
 #box quantity
 quantity = 2
 
-#package locations
+#package locations OLD
 shelf1 = "A1"
 package1 = 1
 barcode1 = 1
@@ -31,6 +31,9 @@ shelf2 = "A2"
 package2 = 2
 barcode2 = 1
 dump2 = "B"
+
+#package location[shelf,package,barcode,dropoff]
+Packages = [["A1",1,1,"C"],["A1",1,1,"C"]]
 
 
 #tire with diameter and width in mm
