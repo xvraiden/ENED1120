@@ -8,35 +8,66 @@ import Barcode
 pos = False
 i = 0
 
-def AvoidDrive(Speed, x, y):
+def AvoidDrive(Speed, x, y, yFirst):
     xtemp = x
     ytemp = y
 
-    m_Drivetrain.turn_to_angle(Speed, 90)
+    if (yFirst == False):
+        m_Drivetrain.turn_to_angle(Speed, 0)
 
-    while (x > 0):
-        if (m_Ultrasonic.distance_centimeters > 10):
-            if (x > 10):
-                m_Drivetrain.on_for_distance(Speed,10,False)
-                x = x - 10
-            else:
-                m_Drivetrain.on_for_distance(Speed,x)
-                x = 0
+        while (x > 0):
+            if (m_Ultrasonic.distance_centimeters > 10):
+                if (x >= 10):
+                    m_Drivetrain.on_for_distance(Speed,10,False)
+                    x = x - 10
+                else:
+                    m_Drivetrain.on_for_distance(Speed,x)
+                    x = 0
+
         if (xtemp != m_Drivetrain.x_pos_mm):
             m_Drivetrain.on_to_coordinates(Speed, xtemp, m_Drivetrain.y_pos_mm)
 
-    m_Drivetrain.turn_to_angle(Speed, 0)
+        m_Drivetrain.turn_to_angle(Speed, 90)
 
-    while (y > 0):
-        if (m_Ultrasonic.distance_centimeters > 10):
-            if (y > 10):
-                m_Drivetrain.on_for_distance(Speed,10,False)
-                y = y - 10
-            else:
-                m_Drivetrain.on_for_distance(Speed,y)
-                y = 0
-        if (xtemp != m_Drivetrain.x_pos_mm):
+        while (y > 0):
+            if (m_Ultrasonic.distance_centimeters > 10):
+                if (y >= 10):
+                    m_Drivetrain.on_for_distance(Speed,10,False)
+                    y = y - 10
+                else:
+                    m_Drivetrain.on_for_distance(Speed,y)
+                    y = 0
+
+        if (ytemp != m_Drivetrain.y_pos_mm):
             m_Drivetrain.on_to_coordinates(Speed, m_Drivetrain.x_pos_mm, ytemp)
+    else:
+        m_Drivetrain.turn_to_angle(Speed, 90)
+
+        while (y > 0):
+            if (m_Ultrasonic.distance_centimeters > 10):
+                if (y >= 10):
+                    m_Drivetrain.on_for_distance(Speed,10,False)
+                    y = y - 10
+                else:
+                    m_Drivetrain.on_for_distance(Speed,y)
+                    x = 0
+
+        if (ytemp != m_Drivetrain.y_pos_mm):
+            m_Drivetrain.on_to_coordinates(Speed, m_Drivetrain.x_pos_mm, ytemp)
+
+        m_Drivetrain.turn_to_angle(Speed, 0)
+
+        while (x > 0):
+            if (m_Ultrasonic.distance_centimeters > 10):
+                if (x >= 10):
+                    m_Drivetrain.on_for_distance(Speed,10,False)
+                    x = x - 10
+                else:
+                    m_Drivetrain.on_for_distance(Speed,x)
+                    x = 0
+
+        if (xtemp != m_Drivetrain.x_pos_mm):
+            m_Drivetrain.on_to_coordinates(Speed, xtemp, m_Drivetrain.y_pos_mm)
     
 
 #create objects for sensors, motors, drivetrain
@@ -59,14 +90,14 @@ for q in range(1, len(Constants.Packages), 1):
 
     #drive to start of desired shelf
     #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, Location.LocationXShelf, Location.LocationYShelf)
-    AvoidDrive(Constants.driveSpeed, Location.LocationXShelf, Location.LocationYShelf)
+    AvoidDrive(Constants.driveSpeed, Location.LocationXShelf, Location.LocationYShelf, True)
 
     #sense the barcode until we are at location
     while (pos == False):
         if (m_Drivetrain.x_pos_mm >= Location.LocationXShelf):
             pos = True
         #m_Drivetrain.on_to_coordinates(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, True, False)
-        AvoidDrive(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, True, False)
+        AvoidDrive(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, False)
         Barcode.colors[i] = int(m_Color.color)
         i = i + 1
 
@@ -91,12 +122,12 @@ for q in range(1, len(Constants.Packages), 1):
 
         #go to dump location location
         #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, Barcode.LocationX, Barcode.LocationY)
-        AvoidDrive(Constants.driveSpeed, Barcode.LocationX, Barcode.LocationY)
+        AvoidDrive(Constants.driveSpeed, Barcode.LocationX, Barcode.LocationY, False)
 
         #go home
         #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, 6 * 25.4, -6 * 25.4)
-        AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4)
+        AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False)
     else:
         #go home
         #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, 6 * 25.4, -6 * 25.4)
-        AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4)
+        AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False)
