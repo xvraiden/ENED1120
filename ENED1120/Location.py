@@ -78,13 +78,13 @@ def DetermineShelfLocation(unitNumber):
 #determine the location of the home position in mm
 def DetermineDumpLocation(dumpLocation):
 
-    if(dumpLocation=="B"):
+    if(dumpLocation == "B"):
         LocationXDump = 102 * 25.4
         LocationYDump = -6 * 25.4
-    elif(dumpLocation=="C"):
+    elif(dumpLocation == "C"):
         LocationXDump = 6 * 25.4
         LocationYDump = 114 * 25.4
-    elif(dumpLocation=="D"):
+    elif(dumpLocation == "D"):
         LocationXDump = 102 * 25.4
         LocationYDump = 114 * 25.4
 

@@ -19,7 +19,7 @@ wheelOffset = 136.0
 sensingDistance = 7
 
 #package location[shelf,package,barcode,dropoff]
-Packages = [["A1",1,1,"C"],["A1",1,1,"C"]]
+Packages = [["A1",1,1,"C"],["A1",9,2,"B"]]
 
 
 #tire with diameter and width in mm

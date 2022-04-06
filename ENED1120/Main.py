@@ -15,9 +15,9 @@ m_Drivetrain = MoveDifferential(Constants.leftDrive, Constants.rightDrive, Const
 
 m_Claw = MediumMotor()
 
-m_Ultrasonic = UltrasonicSensor
+m_Ultrasonic = UltrasonicSensor()
 
-m_Color = ColorSensor
+m_Color = ColorSensor()
 
 def AvoidDrive(Speed, x, y, yFirst):
     xtemp = x
@@ -98,8 +98,7 @@ for q in range(1, len(Constants.Packages), 1):
     while (pos == False):
         if (m_Drivetrain.x_pos_mm >= Location.LocationXShelf):
             pos = True
-        #m_Drivetrain.on_to_coordinates(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, True, False)
-        AvoidDrive(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, False)
+        m_Drivetrain.on_for_distance(Constants.senseSpeed, (0.25 * 25.4))
         if (m_Color.reflected_light_intensity > 50):
             Barcode.colors[i] = 6
         else:

@@ -10,9 +10,9 @@ m_Drivetrain = MoveDifferential(Constants.leftDrive, Constants.rightDrive, Const
 
 m_Claw = MediumMotor()
 
-m_Ultrasonic = UltrasonicSensor
+m_Ultrasonic = UltrasonicSensor()
 
-m_Color = ColorSensor
+m_Color = ColorSensor()
 
 
 def AvoidDrive(Speed, x, y, yFirst):
