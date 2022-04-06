@@ -1,5 +1,7 @@
+#!/usr/bin/env python3
 from ev3dev2.motor import MoveDifferential, MediumMotor
 from ev3dev2.sensor.lego import UltrasonicSensor, ColorSensor
+from time import sleep
 import Constants
 import Location
 import Barcode
@@ -7,6 +9,15 @@ import Barcode
 #create position flag and barcode scan number
 pos = False
 i = 0
+    
+#create objects for sensors, motors, drivetrain
+m_Drivetrain = MoveDifferential(Constants.leftDrive, Constants.rightDrive, Constants.MyTire, Constants.wheelOffset)
+
+m_Claw = MediumMotor()
+
+m_Ultrasonic = UltrasonicSensor
+
+m_Color = ColorSensor
 
 def AvoidDrive(Speed, x, y, yFirst):
     xtemp = x
@@ -15,7 +26,7 @@ def AvoidDrive(Speed, x, y, yFirst):
     if (yFirst == False):
         m_Drivetrain.turn_to_angle(Speed, 0)
 
-        while (x > 0):
+        while (x > 180):
             if (m_Ultrasonic.distance_centimeters > 10):
                 if (x >= 10):
                     m_Drivetrain.on_for_distance(Speed,10,False)
@@ -55,7 +66,7 @@ def AvoidDrive(Speed, x, y, yFirst):
         if (ytemp != m_Drivetrain.y_pos_mm):
             m_Drivetrain.on_to_coordinates(Speed, m_Drivetrain.x_pos_mm, ytemp)
 
-        m_Drivetrain.turn_to_angle(Speed, 0)
+        m_Drivetrain.turn_to_angle(Speed, 180)
 
         while (x > 0):
             if (m_Ultrasonic.distance_centimeters > 10):
@@ -68,17 +79,6 @@ def AvoidDrive(Speed, x, y, yFirst):
 
         if (xtemp != m_Drivetrain.x_pos_mm):
             m_Drivetrain.on_to_coordinates(Speed, xtemp, m_Drivetrain.y_pos_mm)
-    
-
-#create objects for sensors, motors, drivetrain
-m_Drivetrain = MoveDifferential(Constants.leftDrive, Constants.rightDrive, Constants.MyTire, Constants.wheelOffset)
-
-m_Claw = MediumMotor()
-
-m_Ultrasonic = UltrasonicSensor
-
-m_Color = ColorSensor
-
 
 # begin odometry at start location a in mm
 m_Drivetrain.odometry_start(90, 6 * 25.4, -6 * 25.4)
@@ -92,6 +92,8 @@ for q in range(1, len(Constants.Packages), 1):
     #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, Location.LocationXShelf, Location.LocationYShelf)
     AvoidDrive(Constants.driveSpeed, Location.LocationXShelf, Location.LocationYShelf, True)
 
+    sleep(1)
+
     #sense the barcode until we are at location
     while (pos == False):
         if (m_Drivetrain.x_pos_mm >= Location.LocationXShelf):
@@ -99,6 +101,7 @@ for q in range(1, len(Constants.Packages), 1):
         #m_Drivetrain.on_to_coordinates(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, True, False)
         AvoidDrive(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, False)
         Barcode.colors[i] = int(m_Color.color)
+        sleep
         i = i + 1
 
     #interpret the barcode and proceed if proper barcode detected otherwise return to home
@@ -117,12 +120,18 @@ for q in range(1, len(Constants.Packages), 1):
         #pickup box
         m_Claw.on_for_degrees(Constants.clawSpeed, m_Claw.position + 30)
 
+        sleep(1)
+
         #backup from shelf
         m_Drivetrain.on_for_distance(Constants.senseSpeed, -180)
 
         #go to dump location location
         #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, Barcode.LocationX, Barcode.LocationY)
         AvoidDrive(Constants.driveSpeed, Barcode.LocationX, Barcode.LocationY, False)
+
+        #dump box
+        m_Claw.on_for_degrees(Constants.clawSpeed, m_Claw.position + 30)
+        m_Drivetrain.on_for_distance(Constants.senseSpeed, -180)
 
         #go home
         #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, 6 * 25.4, -6 * 25.4)

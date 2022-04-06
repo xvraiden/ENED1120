@@ -7,7 +7,7 @@ import Location
 # four members of list colors
 # colors is an array with infomation from the light sensor
 colors = []
-readAgain = false   # if the sensor does not get all data we want to read it again
+readAgain = False   # if the sensor does not get all data we want to read it again
 b1 = 0
 b2 = 0
 b3 = 0
@@ -47,10 +47,10 @@ def Interperate(unitNumber):
     elif(b4 == 4):
         barcode = 4
     else:
-        readAgain = true
+        readAgain = True
 
     # checks if the barcode sensored is the same as desired one:
-    if (barcode == Constants.Packages(unitNumber - 1, 2)):
+    if (barcode == Constants.Packages[unitNumber - 1][ 2]):
         Location.DetermineDumpLocation(Constants.dump1)
         LocationX = Location.LocationXDump
         LocationY = Location.LocationYDump
