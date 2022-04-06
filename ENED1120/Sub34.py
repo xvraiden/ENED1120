@@ -36,6 +36,7 @@ while (pos == False):
         sleep(1)
         i = i + 1
 
+Barcode.Interperate(2)
 
 m_Button.wait_for_released("enter")
 

@@ -51,7 +51,8 @@ def Interperate(unitNumber):
 
     # checks if the barcode sensored is the same as desired one:
     if (barcode == Constants.Packages[unitNumber - 1][ 2]):
-        Location.DetermineDumpLocation(Constants.dump1)
+        Location.DetermineDumpLocation(Constants.Packages[unitNumber - 1][3])
+        OSD.Draw("Box Type {0}".format(Constants.Packages[unitNumber - 1][3]))
         LocationX = Location.LocationXDump
         LocationY = Location.LocationYDump
         return True
