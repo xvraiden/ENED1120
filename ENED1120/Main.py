@@ -100,8 +100,11 @@ for q in range(1, len(Constants.Packages), 1):
             pos = True
         #m_Drivetrain.on_to_coordinates(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, True, False)
         AvoidDrive(Constants.senseSpeed, m_Drivetrain.x_pos_mm + (0.25 * 25.4), m_Drivetrain.y_pos_mm, False)
-        Barcode.colors[i] = int(m_Color.color)
-        sleep
+        if (m_Color.reflected_light_intensity > 50):
+            Barcode.colors[i] = 6
+        else:
+            Barcode.colors[i] = 0
+        sleep(1)
         i = i + 1
 
     #interpret the barcode and proceed if proper barcode detected otherwise return to home
@@ -115,7 +118,7 @@ for q in range(1, len(Constants.Packages), 1):
         while (pos == False):
             if (m_Ultrasonic.distance_centimeters <= Constants.sensingDistance):
                 pos = True
-            m_Drivetrain.on_for_distance(Constants.senseSpeed, 10)
+            m_Drivetrain.on_for_distance(Constants.senseSpeed, 10, False)
 
         #pickup box
         m_Claw.on_for_degrees(Constants.clawSpeed, m_Claw.position + 30)
@@ -136,7 +139,9 @@ for q in range(1, len(Constants.Packages), 1):
         #go home
         #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, 6 * 25.4, -6 * 25.4)
         AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False)
+        sleep(5)
     else:
         #go home
         #m_Drivetrain.on_to_coordinates(Constants.driveSpeed, 6 * 25.4, -6 * 25.4)
         AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False)
+        sleep(5)

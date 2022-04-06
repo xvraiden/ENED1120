@@ -18,20 +18,6 @@ wheelOffset = 136.0
 # sensing distance in cm
 sensingDistance = 7
 
-#box quantity
-quantity = 2
-
-#package locations OLD
-shelf1 = "A1"
-package1 = 1
-barcode1 = 1
-dump1 = "C"
-
-shelf2 = "A2"
-package2 = 2
-barcode2 = 1
-dump2 = "B"
-
 #package location[shelf,package,barcode,dropoff]
 Packages = [["A1",1,1,"C"],["A1",1,1,"C"]]
 
