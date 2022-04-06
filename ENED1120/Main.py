@@ -96,7 +96,7 @@ for q in range(1, len(Constants.Packages), 1):
 
     #sense the barcode until we are at location
     while (pos == False):
-        if (m_Drivetrain.x_pos_mm >= Location.LocationXShelf):
+        if ((m_Drivetrain.x_pos_mm >= Location.LocationXShelf + 15) or (m_Drivetrain.x_pos_mm <= Location.LocationXShelf - 15)):
             pos = True
         m_Drivetrain.on_for_distance(Constants.senseSpeed, (0.25 * 25.4))
         if (m_Color.reflected_light_intensity > 50):
