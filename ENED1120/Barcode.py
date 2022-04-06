@@ -58,7 +58,7 @@ def Interperate(unitNumber):
         return True
     else:
         # display the location if the box does not match
-        OSD.Draw("Box Type {0}".format(barcode))
+        OSD.Draw("Box Type {0}; Incorrect Barcode Scanned".format(barcode))
         return False
 
 
