@@ -14,7 +14,7 @@ senseSpeed = SpeedRPM(10)
 clawSpeed = SpeedRPM(30)
 
 #wheel offset on center mm
-wheelOffset = 136.0 
+wheelOffset = 134.0 
 
 # sensing distance in cm
 sensingDistance = 7
@@ -30,4 +30,4 @@ class MyTire(Wheel):
     comes in set 31313
     """
     def __init__(self):
-        Wheel.__init__(self, 69.8, 36.2)
+        Wheel.__init__(self, 70.4, 36.2)
