@@ -2,8 +2,8 @@ from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, SpeedRPM
 from ev3dev2.wheel import Wheel
 
 #drive motor ports
-leftDrive = OUTPUT_A
-rightDrive = OUTPUT_D
+leftDrive = OUTPUT_D
+rightDrive = OUTPUT_A
 
 #speeds for moving
 driveSpeed = SpeedRPM(60)
