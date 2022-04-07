@@ -8,10 +8,7 @@ import Location
 # colors is an array with infomation from the light sensor
 colors = []
 readAgain = False   # if the sensor does not get all data we want to read it again
-b1 = 0
-b2 = 0
-b3 = 0
-b4 = 0
+
 
 LocationX = 0
 LocationY = 0
@@ -27,6 +24,11 @@ boxType4 = [0,6,6,0]
 # this part of the code needs to figure out which types is barcode:
 
 def Interperate(unitNumber):
+    
+    b1 = 0
+    b2 = 0
+    b3 = 0
+    b4 = 0
 
     for i in range(4):
         if(colors[i] == boxType1[i]):
