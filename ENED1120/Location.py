@@ -55,22 +55,22 @@ def DetermineShelfLocation(unitNumber):
         LocationXShelf = LocationXShelf + (30 * 25.4)
         LocationYShelf = LocationYShelf - (6 * 25.4)
     elif (Constants.Packages[unitNumber - 1][1] == 7):
-        LocationXShelf = LocationXShelf + (0 * 25.4)
-        LocationYShelf = LocationYShelf + (18 * 25.4)
-    elif (Constants.Packages[unitNumber - 1][1] == 8):
         LocationXShelf = LocationXShelf + (6 * 25.4)
         LocationYShelf = LocationYShelf + (18 * 25.4)
-    elif (Constants.Packages[unitNumber - 1][1] == 9):
+    elif (Constants.Packages[unitNumber - 1][1] == 8):
         LocationXShelf = LocationXShelf + (12 * 25.4)
         LocationYShelf = LocationYShelf + (18 * 25.4)
-    elif (Constants.Packages[unitNumber - 1][1] == 10):
+    elif (Constants.Packages[unitNumber - 1][1] == 9):
         LocationXShelf = LocationXShelf + (18 * 25.4)
         LocationYShelf = LocationYShelf + (18 * 25.4)
-    elif (Constants.Packages[unitNumber - 1][1] == 11):
+    elif (Constants.Packages[unitNumber - 1][1] == 10):
         LocationXShelf = LocationXShelf + (24 * 25.4)
         LocationYShelf = LocationYShelf + (18 * 25.4)
-    elif (Constants.Packages[unitNumber - 1][1] == 12):
+    elif (Constants.Packages[unitNumber - 1][1] == 11):
         LocationXShelf = LocationXShelf + (30 * 25.4)
+        LocationYShelf = LocationYShelf + (18 * 25.4)
+    elif (Constants.Packages[unitNumber - 1][1] == 12):
+        LocationXShelf = LocationXShelf + (36 * 25.4)
         LocationYShelf = LocationYShelf + (18 * 25.4)
 
 
