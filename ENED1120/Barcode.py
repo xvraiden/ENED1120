@@ -9,10 +9,6 @@ import Location
 colors = []
 readAgain = False   # if the sensor does not get all data we want to read it again
 
-
-LocationX = 0
-LocationY = 0
-
 barcode = 0; # type of barcode that sensor identified. It can be 1,2,3 or 4 based on which box type we are reading
 
 # all barcodes of box types that were given to us
@@ -53,10 +49,7 @@ def Interperate(unitNumber):
 
     # checks if the barcode sensored is the same as desired one:
     if (barcode == Constants.Packages[unitNumber - 1][ 2]):
-        Location.DetermineDumpLocation(Constants.Packages[unitNumber - 1][3])
         OSD.Draw("Box Type {0}; Correct Barcode Scanned".format(barcode))
-        LocationX = Location.LocationXDump
-        LocationY = Location.LocationYDump
         return True
     else:
         # display the location if the box does not match

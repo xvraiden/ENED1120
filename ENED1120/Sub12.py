@@ -19,15 +19,15 @@ m_Button = Button()
 
 m_Drivetrain.odometry_start(90, 6 * 25.4, -6 * 25.4)
 
-Location.DetermineShelfLocation(1)
+locationShelf = Location.DetermineShelfLocation(1)
 
-Drivetrain.AvoidDrive(Constants.driveSpeed, Location.LocationXShelf - 75, Location.LocationYShelf, True, m_Drivetrain, m_Ultrasonic)
+Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0] - 75, locationShelf[1], True, m_Drivetrain, m_Ultrasonic)
 
 sleep(5)
 
-Location.DetermineDumpLocation("B")
+locationDump = Location.DetermineDumpLocation("B")
 
-Drivetrain.AvoidDrive(Constants.driveSpeed, Location.LocationXDump, Location.LocationYDump, False, m_Drivetrain, m_Ultrasonic)
+Drivetrain.AvoidDrive(Constants.driveSpeed, locationDump[0], locationDump[1], False, m_Drivetrain, m_Ultrasonic)
 
 m_Button.wait_for_released("enter")
 

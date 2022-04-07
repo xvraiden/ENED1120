@@ -21,12 +21,12 @@ m_Button = Button()
 
 m_Drivetrain.odometry_start(90, 12 * 25.4, 0)
 
-Location.DetermineShelfLocation(2)
+locationShelf = Location.DetermineShelfLocation(2)
 
 Drivetrain.AvoidDrive(Constants.driveSpeed, Location.LocationXShelf, 0, False, m_Drivetrain, m_Ultrasonic)
 
 while (pos == False):
-        if ((m_Drivetrain.x_pos_mm >= Location.LocationXShelf + 15) or (m_Drivetrain.x_pos_mm <= Location.LocationXShelf - 15)):
+        if ((m_Drivetrain.x_pos_mm >= locationShelf[0] + 15) or (m_Drivetrain.x_pos_mm <= locationShelf[0] - 15)):
             pos = True
         m_Drivetrain.on_for_distance(Constants.senseSpeed, (0.25 * 25.4))
         if (m_Color.reflected_light_intensity > 50):
