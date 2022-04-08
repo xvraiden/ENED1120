@@ -21,7 +21,7 @@ m_Drivetrain.odometry_start(90, 6 * 25.4, -6 * 25.4)
 
 locationShelf = Location.DetermineShelfLocation(1)
 
-Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0] - 75, locationShelf[1], True, m_Drivetrain, m_Ultrasonic)
+Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0] - 50, locationShelf[1], True, m_Drivetrain, m_Ultrasonic)
 
 sleep(5)
 
@@ -31,6 +31,6 @@ Drivetrain.AvoidDrive(Constants.driveSpeed, locationDump[0], locationDump[1], Fa
 
 m_Button.wait_for_released("enter")
 
-m_Drivetrain.on_for_distance(Constants.driveSpeed , -7 * 25.4)
+m_Drivetrain.on_for_distance(Constants.driveSpeed , -10 * 25.4)
 
 Drivetrain.AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False, m_Drivetrain, m_Ultrasonic)

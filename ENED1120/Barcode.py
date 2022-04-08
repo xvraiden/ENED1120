@@ -6,10 +6,7 @@ import Location
 # list of intigers (6 or 1)
 # four members of list colors
 # colors is an array with infomation from the light sensor
-colors = []
 readAgain = False   # if the sensor does not get all data we want to read it again
-
-barcode = 0; # type of barcode that sensor identified. It can be 1,2,3 or 4 based on which box type we are reading
 
 # all barcodes of box types that were given to us
 boxType1 = [0,6,6,6]
@@ -19,8 +16,9 @@ boxType4 = [0,6,6,0]
 
 # this part of the code needs to figure out which types is barcode:
 
-def Interperate(unitNumber):
+def Interperate(unitNumber, colors):
     
+    barcode = 0
     b1 = 0
     b2 = 0
     b3 = 0
@@ -49,11 +47,11 @@ def Interperate(unitNumber):
 
     # checks if the barcode sensored is the same as desired one:
     if (barcode == Constants.Packages[unitNumber - 1][ 2]):
-        OSD.Draw("Box Type {0}; Correct Barcode Scanned".format(barcode))
+        OSD.Draw("Box Type {0}\nCorrect\nBarcode\nScanned".format(barcode))
         return True
     else:
         # display the location if the box does not match
-        OSD.Draw("Box Type {0}; Incorrect Barcode Scanned".format(barcode))
+        OSD.Draw("Box Type {0}\nIncorrect\nBarcode\nScanned".format(barcode))
         return False
 
 

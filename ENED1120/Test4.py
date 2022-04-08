@@ -8,6 +8,7 @@ import Location
 import Barcode
 import Drivetrain
 
+pos = False
 
 m_Drivetrain = MoveDifferential(Constants.leftDrive, Constants.rightDrive, Constants.MyTire, Constants.wheelOffset)
 
@@ -19,33 +20,7 @@ m_Color = ColorSensor()
 
 m_Button = Button()
 
-pos = False
-i = 0
-
-colors = []
-
-m_Drivetrain.odometry_start(0, 11 * 25.4, 0)
-
-locationShelf = Location.DetermineShelfLocation(2)
-
-Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0], 0, False, m_Drivetrain, m_Ultrasonic)
-
-m_Drivetrain.turn_degrees(Constants.driveSpeed, 180)
-
-while (pos == False):
-        if (((m_Drivetrain.x_pos_mm >= locationShelf[0] + 15) or (m_Drivetrain.x_pos_mm <= locationShelf[0] - 15)) and i > 3):
-            pos = True
-        m_Drivetrain.on_for_distance(Constants.senseSpeed, (0.25 * 25.4))
-        if (m_Color.reflected_light_intensity > 10):
-            colors.append(6)
-        else:
-            colors.append(0)
-        sleep(1)
-        i = i + 1
-
-Barcode.Interperate(2, colors)
-
-m_Button.wait_for_released("enter")
+m_Drivetrain.odometry_start(180, 27 * 25.4, 0)
 
 m_Drivetrain.turn_degrees(Constants.senseSpeed, -90)
 

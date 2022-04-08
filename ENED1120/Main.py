@@ -20,6 +20,8 @@ m_Ultrasonic = UltrasonicSensor()
 
 m_Color = ColorSensor()
 
+colors = []
+
 # begin odometry at start location a in mm
 m_Drivetrain.odometry_start(90, 6 * 25.4, -6 * 25.4)
 
@@ -35,18 +37,18 @@ for q in range(1, len(Constants.Packages), 1):
 
     #sense the barcode until we are at location
     while (pos == False):
-        if ((m_Drivetrain.x_pos_mm >= locationShelf[0] + 15) or (m_Drivetrain.x_pos_mm <= locationShelf[0] - 15)):
+        if (((m_Drivetrain.x_pos_mm >= locationShelf[0] + 15) or (m_Drivetrain.x_pos_mm <= locationShelf[0] - 15)) and i > 3):
             pos = True
         m_Drivetrain.on_for_distance(Constants.senseSpeed, (0.25 * 25.4))
-        if (m_Color.reflected_light_intensity > 50):
-            Barcode.colors[i] = 6
+        if (m_Color.reflected_light_intensity > 10):
+            colors.append(6)
         else:
-            Barcode.colors[i] = 0
+            colors.append(0)
         sleep(1)
         i = i + 1
 
     #interpret the barcode and proceed if proper barcode detected otherwise return to home
-    if (Barcode.Interperate(q) == True):
+    if (Barcode.Interperate(q, colors) == True):
         #turn to face box
 
         locationDump = Location.DetermineDumpLocation(Constants.Packages[q][3])
