@@ -64,19 +64,19 @@ for q in range(1, len(Constants.Packages), 1):
             m_Drivetrain.on_for_distance(Constants.senseSpeed, 10, False)
 
         #pickup box
-        m_Claw.on_for_degrees(Constants.clawSpeed, m_Claw.position + 30)
+        m_Claw.on_for_degrees(Constants.clawSpeed, 120)
 
         sleep(1)
 
         #backup from shelf
-        m_Drivetrain.on_for_distance(Constants.senseSpeed, -180)
+        m_Drivetrain.on_for_distance(Constants.senseSpeed, -75)
 
         #go to dump location location
         Drivetrain.AvoidDrive(Constants.driveSpeed, locationDump[0], locationDump[1], False, m_Drivetrain, m_Ultrasonic)
 
         #dump box
-        m_Claw.on_for_degrees(Constants.clawSpeed, m_Claw.position + 30)
-        m_Drivetrain.on_for_distance(Constants.senseSpeed, -180)
+        m_Claw.on_for_degrees(Constants.clawSpeed, -120)
+        m_Drivetrain.on_for_distance(Constants.senseSpeed, -254)
 
         #go home
         Drivetrain.AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False, m_Drivetrain, m_Ultrasonic)
