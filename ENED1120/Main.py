@@ -36,16 +36,60 @@ for q in range(1, len(Constants.Packages), 1):
     sleep(1)
 
     #sense the barcode until we are at location
+    #while (pos == False):
+       #if (((m_Drivetrain.x_pos_mm >= locationShelf[0] + 15) or (m_Drivetrain.x_pos_mm <= locationShelf[0] - 15)) and i > 3):
+        #    pos = True
+        #m_Drivetrain.on_for_distance(Constants.senseSpeed, (0.25 * 25.4))
+        #if (m_Color.reflected_light_intensity > 10):
+         #   colors.append(6)
+        #else:
+         #   colors.append(0)
+        #sleep(1)
+        #i = i + 1
+
+    #search for start of box
     while (pos == False):
-        if (((m_Drivetrain.x_pos_mm >= locationShelf[0] + 15) or (m_Drivetrain.x_pos_mm <= locationShelf[0] - 15)) and i > 3):
-            pos = True
-        m_Drivetrain.on_for_distance(Constants.senseSpeed, (0.25 * 25.4))
-        if (m_Color.reflected_light_intensity > 10):
-            colors.append(6)
+        if (not((m_Color.color == 1) or (m_Color.color == 6))):
+            m_Drivetrain.on_for_distance(Constants.senseSpeed, 5)
         else:
-            colors.append(0)
-        sleep(1)
-        i = i + 1
+            pos = True
+
+    pos = False
+
+    #get staring location
+    xtemp = m_Drivetrain.x_pos_mm
+    ytemp = m_Drivetrain.y_pos_mm
+
+    codePos = 1
+
+    m_Drivetrain.on_for_distance(Constants.senseSpeed, 2.5 * 25.4, True, False)
+
+    while (pos == False):
+        #determine distance scanned
+        x = abs(xtemp - m_Drivetrain.x_pos_mm)
+        y = abs(ytemp - m_Drivetrain.y_pos_mm)
+
+        #determine if we are believed to pass the next bar
+        if (x >=  1.5 * 25.4):
+                codePos = 4
+        elif (x >=  1 * 25.4):
+                codePos = 3
+        elif (x >=  0.5 * 25.4):
+                codePos = 2
+        elif (x >=  0 * 25.4):
+                codePos = 1
+
+        #read the sensor and determine color
+        if (m_Color.color == 6):
+            colors.append([1,codePos])
+        elif (m_Color.color == 1):
+            colors.append([0,codePos])
+
+        #determine if we are finished scanning
+        if ((x > (3 * 25.4) - 15) or (x < (3 * 25.4) + 15)):
+                pos = True
+
+    m_Drivetrain.off()
 
     #interpret the barcode and proceed if proper barcode detected otherwise return to home
     if (Barcode.Interperate(q, colors) == True):

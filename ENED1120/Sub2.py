@@ -8,16 +8,18 @@ import Location
 import Barcode
 import Drivetrain
 
-
+#create objects
 m_Drivetrain = MoveDifferential(Constants.leftDrive, Constants.rightDrive, Constants.MyTire, Constants.wheelOffset)
 
 m_Ultrasonic = UltrasonicSensor()
 
 m_Button = Button()
 
-m_Drivetrain.odometry_start(90, 120 * 25.4, -6 * 25.4)
+#start at 102x -6y
+m_Drivetrain.odometry_start(270, 102 * 25.4, -6 * 25.4)
 
-
+#backup from b
 m_Drivetrain.on_for_distance(Constants.driveSpeed , -10 * 25.4)
 
+#go to a
 Drivetrain.AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False, m_Drivetrain, m_Ultrasonic)

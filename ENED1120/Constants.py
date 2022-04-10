@@ -22,6 +22,7 @@ sensingDistance = 7
 #package location[shelf,package,barcode,dropoff]
 Packages = [["A1",7,1,"C"],["A1",9,2,"B"]]
 
+hitCount = 3
 
 #tire with diameter and width in mm
 class MyTire(Wheel):

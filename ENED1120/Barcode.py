@@ -2,21 +2,53 @@ import Constants
 import OSD
 import Location
 
-# black - 1, white - 6
-# list of intigers (6 or 1)
+# black - 0, white - 1
+# list of intigers (0 or 1)
 # four members of list colors
 # colors is an array with infomation from the light sensor
 readAgain = False   # if the sensor does not get all data we want to read it again
 
 # all barcodes of box types that were given to us
-boxType1 = [0,6,6,6]
-boxType2 = [0,6,0,6]
-boxType3 = [0,0,6,6]
-boxType4 = [0,6,6,0]
+boxType1 = [0,1,1,1]
+boxType2 = [0,1,0,1]
+boxType3 = [0,0,1,1]
+boxType4 = [0,1,1,0]
 
 # this part of the code needs to figure out which types is barcode:
 
-def Interperate(unitNumber, colors):
+def Filter(data):
+    colors = []
+    c = 0
+    counterState = 0
+    counterDist = 0
+    colors.append(data[0][0])
+
+    for i in range(len(data)):
+        if (colors[c] != data[i][0]):
+            counterState = counterState + 1
+        else:
+            counterState = 0
+
+        if (data[i - 1][0] == data[i][0]):
+            counterDist = counterDist + 1
+        else:
+            counterDist = 0
+
+        if ((counterState >= Constants.hitCount) or ((data[i][1] == c + 2) and(counterDist >= Constants.hitCount))):
+            print(data[i][0])
+            print(c)
+            print(i)
+            print('')
+            c = c + 1
+            counterState = 0
+            counterDist = 0
+            colors.append(data[i][0])
+            
+    return colors
+
+def Interperate(unitNumber, data):
+
+    colors = Filter(data)
     
     barcode = 0
     b1 = 0
@@ -45,13 +77,14 @@ def Interperate(unitNumber, colors):
     else:
         readAgain = True
 
+    return barcode
     # checks if the barcode sensored is the same as desired one:
     if (barcode == Constants.Packages[unitNumber - 1][ 2]):
-        OSD.Draw("Box Type {0}\nCorrect\nBarcode\nScanned".format(barcode))
+        #OSD.Draw("Box Type {0}\nCorrect\nBarcode\nScanned".format(barcode))
         return True
     else:
         # display the location if the box does not match
-        OSD.Draw("Box Type {0}\nIncorrect\nBarcode\nScanned".format(barcode))
+        #OSD.Draw("Box Type {0}\nIncorrect\nBarcode\nScanned".format(barcode))
         return False
 
 
