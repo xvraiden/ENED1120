@@ -23,6 +23,7 @@ m_Button = Button()
 #start at 27
 m_Drivetrain.odometry_start(180, 27 * 25.4, 0)
 
+m_Drivetrain.on_for_distance(Constants.driveSpeed, 40)
 
 #turn toward box
 m_Drivetrain.turn_degrees(Constants.senseSpeed, -90)

@@ -77,14 +77,34 @@ def Interperate(unitNumber, data):
     else:
         readAgain = True
 
-    return barcode
     # checks if the barcode sensored is the same as desired one:
     if (barcode == Constants.Packages[unitNumber - 1][ 2]):
-        #OSD.Draw("Box Type {0}\nCorrect\nBarcode\nScanned".format(barcode))
+        OSD.Draw("Box Type {0}\nCorrect\nBarcode\nScanned".format(barcode))
         return True
     else:
         # display the location if the box does not match
-        #OSD.Draw("Box Type {0}\nIncorrect\nBarcode\nScanned".format(barcode))
+        OSD.Draw("Box Type {0}\nIncorrect\nBarcode\nScanned".format(barcode))
+        return False
+
+def NewInterperate(unitNumber, colors):
+
+    barcode = 0
+
+    if (colors[0] == 0):
+        barcode = 3
+    elif (colors[1] == 1):
+        barcode = 2
+    elif (colors[1] == 2):
+        barcode = 1
+    elif (colors[1] == 0):
+        barcode = 4
+
+    if (barcode == Constants.Packages[unitNumber - 1][ 2]):
+        OSD.Draw("Box Type {0}\nCorrect\nBarcode\nScanned".format(barcode))
+        return True
+    else:
+        # display the location if the box does not match
+        OSD.Draw("Box Type {0}\nIncorrect\nBarcode\nScanned".format(barcode))
         return False
 
 

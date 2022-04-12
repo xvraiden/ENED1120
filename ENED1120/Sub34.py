@@ -96,7 +96,7 @@ m_Drivetrain.off()
 #determine the scanned barcode
 Barcode.Interperate(2, colors)
 
-#begin task 3
+#begin task 4
 m_Button.wait_for_released("enter")
 
 #turn to face box

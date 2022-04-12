@@ -1,9 +1,13 @@
 from ev3dev2.motor import OUTPUT_A, OUTPUT_B, OUTPUT_C, OUTPUT_D, SpeedRPM
 from ev3dev2.wheel import Wheel
+from ev3dev2.sensor import INPUT_1, INPUT_2
 
 #drive motor ports
 leftDrive = OUTPUT_B
 rightDrive = OUTPUT_C
+
+topColor = INPUT_1
+bottomColor = INPUT_2
 
 #speeds for moving
 #driveSpeed = SpeedRPM(60)
@@ -11,7 +15,7 @@ driveSpeed = SpeedRPM(20)
 senseSpeed = SpeedRPM(10)
 
 #claw speed
-clawSpeed = SpeedRPM(30)
+clawSpeed = SpeedRPM(120)
 
 #wheel offset on center mm
 wheelOffset = 134.0 
