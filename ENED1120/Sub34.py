@@ -16,7 +16,7 @@ m_Claw = MediumMotor()
 
 m_Ultrasonic = UltrasonicSensor()
 
-m_Color = ColorSensor()
+m_Color = ColorSensor(Constants.topColor)
 
 m_Button = Button()
 

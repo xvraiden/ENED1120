@@ -46,12 +46,12 @@ while (pos == False):
         pos = True
 
 
-if (m_ColorTop.reflected_light_intensity > 15):
+if (m_ColorTop.reflected_light_intensity > 10):
     colors.append(2)
 else:
     colors.append(0)
 
-if (m_ColorBottom.reflected_light_intensity > 35):
+if (m_ColorBottom.reflected_light_intensity > 20):
     colors.append(2)
 elif (m_ColorBottom.reflected_light_intensity > 15):
     colors.append(1)

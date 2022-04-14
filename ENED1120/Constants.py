@@ -21,7 +21,7 @@ clawSpeed = SpeedRPM(120)
 wheelOffset = 134.0 
 
 # sensing distance in cm
-sensingDistance = 7
+sensingDistance = 4
 
 #package location[shelf,package,barcode,dropoff]
 Packages = [["A1",7,1,"C"],["A1",9,2,"B"]]
