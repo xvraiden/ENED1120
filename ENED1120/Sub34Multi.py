@@ -53,12 +53,11 @@ else:
 
 if (m_ColorBottom.reflected_light_intensity > 20):
     colors.append(2)
-elif (m_ColorBottom.reflected_light_intensity > 15):
+elif (m_ColorBottom.reflected_light_intensity > 10):
     colors.append(1)
 else:
     colors.append(0)
-
-
+    
 m_Drivetrain.off()
 
 #determine the scanned barcode
