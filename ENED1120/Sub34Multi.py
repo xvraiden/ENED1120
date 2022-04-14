@@ -33,25 +33,28 @@ m_Drivetrain.odometry_start(0, 11 * 25.4, 0)
 locationShelf = Location.DetermineShelfLocation(2)
 
 #go to location 9
-#Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0], 0, False, m_Drivetrain, m_Ultrasonic)
+#Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0] + 25, 0, False, m_Drivetrain, m_Ultrasonic)
 
 #turn around to scan box
 #m_Drivetrain.turn_degrees(Constants.driveSpeed, 180)
 
+pos = True
+
 while (pos == False):
     if (not((m_ColorTop.color == 1) or (m_ColorTop.color == 6))):
-        #m_Drivetrain.on_for_distance(Constants.senseSpeed, 5)
-        pos = True
+        m_Drivetrain.on_for_distance(Constants.senseSpeed, 5)
+        
     else:
         pos = True
 
+#m_Drivetrain.on_for_distance(Constants.senseSpeed, 7)
 
 if (m_ColorTop.reflected_light_intensity > 10):
     colors.append(2)
 else:
     colors.append(0)
 
-if (m_ColorBottom.reflected_light_intensity > 20):
+if (m_ColorBottom.reflected_light_intensity > 25):
     colors.append(2)
 elif (m_ColorBottom.reflected_light_intensity > 10):
     colors.append(1)

@@ -106,15 +106,3 @@ def NewInterperate(unitNumber, colors):
         # display the location if the box does not match
         OSD.Draw("Box Type {0}\nIncorrect\nBarcode\nScanned".format(barcode))
         return False
-
-
-
-
-
-
-
-
-
-    
-
-
