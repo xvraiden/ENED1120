@@ -75,7 +75,7 @@ def DetermineShelfLocation(unitNumber):
 def DetermineDumpLocation(dumpLocation):
 
     LocationXDump = 0
-    LocationyDump = 0
+    LocationYDump = 0
 
     if(dumpLocation == "B"):
         LocationXDump = 102 * 25.4
