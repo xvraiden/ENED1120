@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from turtle import color
 from ev3dev2.motor import MoveDifferential, MediumMotor
 from ev3dev2.sensor.lego import UltrasonicSensor, ColorSensor
 from ev3dev2.button import Button
@@ -111,7 +110,7 @@ while (pos == False):
     m_Drivetrain.on_for_distance(Constants.senseSpeed, 10, False)
 
 #pickup box
-m_Claw.on_for_degrees(Constants.clawSpeed, 120)
+m_Claw.on_for_degrees(Constants.clawSpeed, -120)
 
 sleep(1)
 
@@ -121,4 +120,4 @@ m_Drivetrain.on_for_distance(Constants.senseSpeed, -75)
 #go to dump location location
 Drivetrain.AvoidDrive(Constants.driveSpeed, 48 * 25.4 , m_Drivetrain.y_pos_mm, True, m_Drivetrain, m_Ultrasonic)
 
-m_Claw.on_for_degrees(Constants.clawSpeed, -120)
+m_Claw.on_for_degrees(Constants.clawSpeed, 120)

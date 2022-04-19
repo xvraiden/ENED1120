@@ -15,7 +15,7 @@ driveSpeed = SpeedRPM(20)
 senseSpeed = SpeedRPM(10)
 
 #claw speed
-clawSpeed = SpeedRPM(120)
+clawSpeed = 100
 
 #wheel offset on center mm
 wheelOffset = 133.0 
@@ -24,7 +24,7 @@ wheelOffset = 133.0
 sensingDistance = 4
 
 #package location[shelf,package,barcode,dropoff]
-Packages = [["A1",7,1,"C"],["A1",9,2,"B"]]
+Packages = [["A1",11,1,"B"],["A1",9,1,"B"],["C1",5,2,"C"]]
 
 hitCount = 3
 

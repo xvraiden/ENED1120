@@ -33,12 +33,11 @@ m_Drivetrain.odometry_start(0, 11 * 25.4, 0)
 locationShelf = Location.DetermineShelfLocation(2)
 
 #go to location 9
-#Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0] + 25, 0, False, m_Drivetrain, m_Ultrasonic)
+Drivetrain.AvoidDrive(Constants.driveSpeed, locationShelf[0] + 25, 0, False, m_Drivetrain, m_Ultrasonic)
 
 #turn around to scan box
-#m_Drivetrain.turn_degrees(Constants.driveSpeed, 180)
+m_Drivetrain.turn_degrees(Constants.driveSpeed, 180)
 
-pos = True
 
 while (pos == False):
     if (not((m_ColorTop.color == 1) or (m_ColorTop.color == 6))):
@@ -47,19 +46,24 @@ while (pos == False):
     else:
         pos = True
 
-#m_Drivetrain.on_for_distance(Constants.senseSpeed, 7)
+m_Drivetrain.on_for_distance(Constants.senseSpeed, 7)
 
 if (m_ColorTop.reflected_light_intensity > 10):
     colors.append(2)
+    print(m_ColorTop.reflected_light_intensity)
 else:
     colors.append(0)
+    print(m_ColorTop.reflected_light_intensity)
 
 if (m_ColorBottom.reflected_light_intensity > 25):
     colors.append(2)
+    print(m_ColorBottom.reflected_light_intensity)
 elif (m_ColorBottom.reflected_light_intensity > 10):
     colors.append(1)
+    print(m_ColorBottom.reflected_light_intensity)
 else:
     colors.append(0)
+    print(m_ColorBottom.reflected_light_intensity)
     
 m_Drivetrain.off()
 
@@ -84,7 +88,7 @@ while (pos == False):
     m_Drivetrain.on_for_distance(Constants.senseSpeed, 10, False)
 
 #pickup box
-m_Claw.on_for_degrees(Constants.clawSpeed, 120)
+m_Claw.on_for_degrees(Constants.clawSpeed, -120)
 
 sleep(1)
 
@@ -95,4 +99,4 @@ m_Drivetrain.on_for_distance(Constants.senseSpeed, -75)
 Drivetrain.AvoidDrive(Constants.driveSpeed, 48 * 25.4 , m_Drivetrain.y_pos_mm, True, m_Drivetrain, m_Ultrasonic)
 
 #drop box
-m_Claw.on_for_degrees(Constants.clawSpeed, -120)
+m_Claw.on_for_degrees(Constants.clawSpeed, 120)

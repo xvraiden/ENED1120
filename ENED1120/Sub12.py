@@ -32,7 +32,7 @@ sleep(5)
 locationDump = Location.DetermineDumpLocation("B")
 
 #go to b
-Drivetrain.AvoidDrive(Constants.driveSpeed, locationDump[0], locationDump[1], False, m_Drivetrain, m_Ultrasonic)
+Drivetrain.AvoidDrive(Constants.driveSpeed, locationDump[0] + 75, locationDump[1], False, m_Drivetrain, m_Ultrasonic)
 
 #task 2
 m_Button.wait_for_released("enter")
@@ -41,4 +41,4 @@ m_Button.wait_for_released("enter")
 m_Drivetrain.on_for_distance(Constants.driveSpeed , -10 * 25.4)
 
 #go home a
-Drivetrain.AvoidDrive(Constants.driveSpeed, 6 * 25.4, -6 * 25.4, False, m_Drivetrain, m_Ultrasonic)
+Drivetrain.AvoidDrive(Constants.driveSpeed, 3 * 25.4, -6 * 25.4, False, m_Drivetrain, m_Ultrasonic)
